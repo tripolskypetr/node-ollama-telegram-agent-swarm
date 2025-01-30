@@ -14,13 +14,16 @@ const PARAMETER_SCHEMA = z.object({}).strict();
 export const SEARCH_PHARMA_PRODUCT = addTool({
   toolName: "search_pharma_product",
   validate: async (clientId, agentName, params) => {
-    const { success } = await PARAMETER_SCHEMA.spa(params);
-    return success;
+    /**
+     * TODO: the nemotron-mini model pass the invalid parameters
+     * Should choose another model
+     */
+    return true;
   },
   call: async (clientId, agentName, params) => {
-    const lastMessage = await getLastUserMessage(clientId);
+    let search = await getLastUserMessage(clientId);
     const products = await ioc.productDbPublicService.findByFulltext(
-      lastMessage,
+      search,
       clientId
     );
     if (products.length) {

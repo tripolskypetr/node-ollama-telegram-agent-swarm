@@ -23,7 +23,7 @@ test("Will list products on request", async (t) => {
   }
   {
     output = await complete(
-      "I want to buy the pharma product which cures flu. like "
+      "I want to buy the pharma product which cures flu. like paracetamol"
     );
     if (
       !ALLOWED_PRODUCTS.some((p) =>

@@ -2,7 +2,7 @@ import { run } from "worker-testbed";
 
 import { CC_EXECUTE_TEST } from "src/config/params";
 
-// import "src/test/navigation_registry.test";
+import "src/test/navigation_registry.test";
 import "src/test/pharma_product_registry.test";
 
 if (CC_EXECUTE_TEST) {

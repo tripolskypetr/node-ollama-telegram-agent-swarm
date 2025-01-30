@@ -14,11 +14,13 @@ Navigate to the agent without asking additional details
 If the speech is about agent, navigate immediately
 If you can't be sure which agent you should navigate to, ask the direct question
 If you can't understand if user want to buy or return, navigate to the sales agent
+It is important not to do navigation when need instead of saying hello
 `;
 
 export const TRIAGE_AGENT = addAgent({
   agentName: "triage_agent",
-  prompt: str.newline(AGENT_PROMPT, CC_TOOL_PROTOCOL_PROMPT),
+  system: [CC_TOOL_PROTOCOL_PROMPT],
+  prompt: str.newline(AGENT_PROMPT),
   completion: OLLAMA_COMPLETION,
   tools: [NAVIGATE_TO_REFUND, NAVIGATE_TO_SALES, NAVIGATE_TO_TRIAGE],
 });

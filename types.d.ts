@@ -29,7 +29,7 @@ declare class LoggerService {
 
 declare class CompletionService {
     readonly loggerService: LoggerService;
-    getCompletion: ({ agentName, messages, tools, }: ICompletionArgs) => Promise<IModelMessage>;
+    getCompletion: ({ agentName, messages, mode, tools, }: ICompletionArgs) => Promise<IModelMessage>;
 }
 
 type Embeddings = number[];

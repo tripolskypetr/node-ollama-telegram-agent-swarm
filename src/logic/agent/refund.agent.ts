@@ -10,11 +10,13 @@ If user do not want to refund navigate him back to triage agent
 Tell the users all details about products in the database by using necessary tool calls
 Do not send any JSON to the user. Format it as plain text. Do not share any internal details like ids, format text human readable
 If the previous user messages contains product request, tell him details immidiately
+It is important to call a tool for getting product details when need instead of saying hello
 `;
 
 export const REFUND_AGENT = addAgent({
   agentName: "refund_agent",
   completion: OLLAMA_COMPLETION,
-  prompt: str.newline(AGENT_PROMPT, CC_TOOL_PROTOCOL_PROMPT),
+  system: [CC_TOOL_PROTOCOL_PROMPT],
+  prompt: str.newline(AGENT_PROMPT),
   tools: [NAVIGATE_TO_TRIAGE, SEARCH_PHARMA_PRODUCT],
 });
