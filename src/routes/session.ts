@@ -1,4 +1,4 @@
-import { disposeConnection, makeConnection } from "agent-swarm-kit";
+import { disposeConnection, getAgentName, makeConnection } from "agent-swarm-kit";
 import { Subject } from "functools-kit";
 import { app, upgradeWebSocket } from "src/config/app";
 import { ROOT_SWARM } from "src/logic";
@@ -12,7 +12,7 @@ app.get(
 
     return {
       onOpen(_, ws) {
-        const receive = makeConnection.scheduled(
+        const receive = makeConnection(
           async (outgoing) => {
             ws.send(JSON.stringify(outgoing));
           },
@@ -22,8 +22,8 @@ app.get(
         incomingSubject.subscribe(receive);
       },
       onMessage(event) {
-        const data = JSON.parse(event.data.toString());
-        incomingSubject.next(data);
+        const incoming = JSON.parse(event.data.toString());
+        incomingSubject.next(incoming.data);
       },
       onClose: () => {
         disposeConnection(clientId, ROOT_SWARM);

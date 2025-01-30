@@ -117,6 +117,16 @@
         return data;
       }
 
+      const send = (message) => {
+        socket.send(
+          JSON.stringify({
+            clientId,
+            stamp: Date.now().toString(),
+            data: message,
+          })
+        );
+      };
+
       const main = () => {
         recognition.lang = "en-US";
 
