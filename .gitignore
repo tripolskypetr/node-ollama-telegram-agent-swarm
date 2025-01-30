@@ -1,0 +1,15 @@
+.env
+logs/*
+!logs/.gitkeep
+node_modules
+.DS_Store
+docs/*
+!docs/.gitkeep
+build/*
+!build/.gitkeep
+error.txt
+snapshots
+playwright-report
+test-results
+error.txt
+temp

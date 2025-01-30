@@ -1,0 +1,13 @@
+
+version: '3.8'
+services:
+  mongodb:
+    image: mongodb/mongodb-community-server:8.0.4-ubi8
+    container_name: node-ollama-agent-swarm-mongo-server
+    ports:
+      - '27017:27017'
+    volumes:
+      - ./mongo_data:/data/db
+    restart: always
+volumes:
+  mongo_data:

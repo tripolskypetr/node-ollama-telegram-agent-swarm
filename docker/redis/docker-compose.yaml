@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:7.4.1
+    container_name: node-ollama-agent-swarm-redis-server
+    ports:
+      - "6379:6379"
+    environment:
+      - REDIS_PASSWORD=mysecurepassword
+    command: ["redis-server", "--requirepass", "mysecurepassword"]
+    volumes:
+      - ./redis_data:/data
+    restart: always
+
+volumes:
+  redis_data:
