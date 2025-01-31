@@ -14,7 +14,7 @@ export const CC_REDIS_PORT = parseInt(process.env.CC_REDIS_PORT) || 6379;
 export const CC_REDIS_PASSWORD = process.env.CC_REDIS_PASSWORD || "";
 
 export const CC_VECTOR_SEARCH_LIMIT = parseInt(process.env.CC_VECTOR_SEARCH_LIMIT) || 5;
-export const CC_VECTOR_SEARCH_SIMILARITY = parseFloat(process.env.CC_VECTOR_SEARCH_SIMILARITY) || 0.7;
+export const CC_VECTOR_SEARCH_SIMILARITY = parseFloat(process.env.CC_VECTOR_SEARCH_SIMILARITY) || 0.55;
 
 export const CC_REDIS_FLUSHALL = !!process.env.CC_REDIS_FLUSHALL || false;
 

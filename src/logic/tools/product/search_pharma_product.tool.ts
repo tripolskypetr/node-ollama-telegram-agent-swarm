@@ -1,5 +1,6 @@
 import {
   addTool,
+  commitSystemMessage,
   commitToolOutput,
   execute,
   getLastUserMessage,
@@ -9,19 +10,41 @@ import { ioc } from "src/lib";
 import serializeProduct from "src/utils/serializeProduct";
 import { z } from "zod";
 
-const PARAMETER_SCHEMA = z.object({}).strict();
+const PARAMETER_SCHEMA = z
+  .object({
+    description: z
+      .string()
+      .min(1, "Fulltext is required")
+  })
+  .strict();
+
 
 export const SEARCH_PHARMA_PRODUCT = addTool({
   toolName: "search_pharma_product",
   validate: async (clientId, agentName, params) => {
-    /**
-     * TODO: the nemotron-mini model pass the invalid parameters
-     * Should choose another model
-     */
-    return true;
+    const { success } = await PARAMETER_SCHEMA.spa(params);
+    return success;
   },
   call: async (clientId, agentName, params) => {
-    let search = await getLastUserMessage(clientId);
+    let search = "";
+    if (params.description) {
+      search = String(params.description);
+    } else {
+      search = await getLastUserMessage(clientId);
+    }
+    if (!search) {
+      await commitToolOutput(
+        str.newline(`The products does not found in the database`),
+        clientId,
+        agentName
+      );
+      await execute(
+        "Tell user to specify search criteria for the pharma product",
+        clientId,
+        agentName
+      );
+      return;
+    }
     const products = await ioc.productDbPublicService.findByFulltext(
       search,
       clientId
@@ -36,8 +59,13 @@ export const SEARCH_PHARMA_PRODUCT = addTool({
         clientId,
         agentName
       );
+      await commitSystemMessage(
+        "Do not call the search_pharma_product next time!",
+        clientId,
+        agentName
+      );
       await execute(
-        "Tell user the products found in the database",
+        "Tell user the products found in the database.",
         clientId,
         agentName
       );
@@ -61,8 +89,14 @@ export const SEARCH_PHARMA_PRODUCT = addTool({
       "Retrieve several pharma products from the database based on description",
     parameters: {
       type: "object",
-      properties: {},
-      required: [],
+      properties: {
+        description: {
+          type: "string",
+          description:
+            "REQUIRED! Minimum one word. The product description. Must include several sentences with description and keywords to find a product",
+        },
+      },
+      required: ["description"],
     },
   },
 });

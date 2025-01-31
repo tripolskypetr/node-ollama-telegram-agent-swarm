@@ -8,13 +8,20 @@ const AGENT_PROMPT = `You are a sales agent that handles all actions related to 
 Tell the users all details about products in the database by using necessary tool calls
 Do not send any JSON to the user. Format it as plain text. Do not share any internal details like ids, format text human readable
 If the previous user messages contains product request, tell him details immidiately
-It is important to call a tool for getting product details when need instead of saying hello
+It is important not to call tools recursive. Execute the search once
 `;
+
+const MODEL_TWEAK_PROMPT = str.newline(
+  "Do not call the function which does not exist",
+  "List of functions: search_pharma_product",
+  "",
+  "It is important not to call tools recursive. Execute the search once",
+);
 
 export const SALES_AGENT = addAgent({
   agentName: "sales_agent",
   completion: OLLAMA_COMPLETION,
-  system: [CC_TOOL_PROTOCOL_PROMPT],
+  system: [CC_TOOL_PROTOCOL_PROMPT, MODEL_TWEAK_PROMPT],
   prompt: str.newline(AGENT_PROMPT),
   tools: [SEARCH_PHARMA_PRODUCT],
 });
