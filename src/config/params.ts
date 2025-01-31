@@ -3,7 +3,7 @@ export const CC_BOT_TOKEN = process.env.CC_BOT_TOKEN || "";
 export const CC_MONGO_CONNECTION_STRING = process.env.CC_MONGO_CONNECTION_STRING || "mongodb://localhost:27017/node-ollama-agent-swarm?wtimeoutMS=15000";
 
 export const CC_OLLAMA_HOST = process.env.CC_OLLAMA_HOST || "http://127.0.0.1:11434";
-export const CC_OLLAMA_CHAT_MODEL = process.env.CC_OLLAMA_CHAT_MODEL || "nemotron-mini:4b";
+export const CC_OLLAMA_CHAT_MODEL = process.env.CC_OLLAMA_CHAT_MODEL || "nemotron-mini:4b"; // "mistral-nemo:12b";
 export const CC_OLLAMA_EMBEDDER_MODEL = process.env.CC_OLLAMA_EMBEDDER_MODEL || "nomic-embed-text";
 
 export const CC_CLIENT_SESSION_EXPIRE_SECONDS = 7 * 24 * 60 * 60; // 1 week
