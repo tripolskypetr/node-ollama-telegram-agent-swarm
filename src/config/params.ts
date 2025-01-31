@@ -1,5 +1,4 @@
 export const CC_BOT_TOKEN = process.env.CC_BOT_TOKEN || "";
-export const CC_BOT_CHANNEL = process.env.CC_BOT_CHANNEL || "";
 
 export const CC_MONGO_CONNECTION_STRING = process.env.CC_MONGO_CONNECTION_STRING || "mongodb://localhost:27017/node-ollama-agent-swarm?wtimeoutMS=15000";
 
