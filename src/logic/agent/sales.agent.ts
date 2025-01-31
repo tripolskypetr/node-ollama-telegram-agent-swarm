@@ -3,6 +3,7 @@ import { OLLAMA_COMPLETION } from "../completion/ollama.completion";
 import { str } from "functools-kit";
 import { CC_TOOL_PROTOCOL_PROMPT } from "src/config/params";
 import { SEARCH_PHARMA_PRODUCT } from "../tools/product/search_pharma_product.tool";
+import { NAVIGATE_TO_TRIAGE } from "../tools/navigate/navigate_to_triage.tool";
 
 const AGENT_PROMPT = `You are a sales agent that handles all actions related to placing the order to purchase an item.
 Tell the users all details about products in the database by using necessary tool calls
@@ -23,5 +24,5 @@ export const SALES_AGENT = addAgent({
   completion: OLLAMA_COMPLETION,
   system: [CC_TOOL_PROTOCOL_PROMPT, MODEL_TWEAK_PROMPT],
   prompt: str.newline(AGENT_PROMPT),
-  tools: [SEARCH_PHARMA_PRODUCT],
+  tools: [SEARCH_PHARMA_PRODUCT, NAVIGATE_TO_TRIAGE],
 });
