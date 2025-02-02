@@ -180,7 +180,7 @@ export const NAVIGATE_TO_SALES = addTool({
 
 To avoid hardcoding initial agent messages, when switching agents, a user request simulation occurs asking to say hello.
 
-```tsx
+```tsx`
 import {
   addTool,
   commitSystemMessage,
@@ -297,24 +297,24 @@ If an agent's output fails validation (non-existent tool call, tool call with in
 
 ## Useful Functions for Agent Swarm Administration
 
-- addAgent - Register a new agent
-- addCompletion - Register a new language model: cloud, local, or mock
-- addSwarm - Register a group of agents for processing user chats
-- addTool - Register a tool for integrating language models into external systems
-- changeAgent - Change active agent in the swarm
-- complete - Request a response to a message passed to the agent swarm
-- session - Create a chat session, provide callbacks for session completion and new message sending
-- getRawHistory - Get raw system history for debugging
-- getAgentHistory - Get history visible to the agent adjusted for self-recovery mechanism and message recipients
-- commitToolOutput - Send function execution result to history. If a function was called, the agent freezes until receiving a response
-- commitSystemMessage - Supplement system prompt with new inputs
-- commitFlush - Clear conversation for agent if incorrect responses were received or the model erroneously calls a tool recursively
-- execute - Ask the neural network to take initiative and write to the user first
-- emit - Send a pre-prepared message to the user
-- getLastUserMessage - Get the last message from the user (without considering execute)
-- commitUserMessage - Save user message in chat history without response. If user spams messages without waiting for request processing
-- getAgentName - Get active agent name
-- getUserHistory - Get history of user messages
-- getAssistantHistory - Get history of language model messages
-- getLastAssistantMessage - Get last message from language model
-- getLastSystemMessage - Get last system prompt supplement
+- `addAgent` - Register a new agent
+- `addCompletion` - Register a new language model: cloud, local, or mock
+- `addSwarm` - Register a group of agents for processing user chats
+- `addTool` - Register a tool for integrating language models into external systems
+- `changeAgent` - Change active agent in the swarm
+- `complete` - Request a response to a message passed to the agent swarm
+- `session` - Create a chat session, provide callbacks for session completion and new message sending
+- `getRawHistory` - Get raw system history for debugging
+- `getAgentHistory` - Get history visible to the agent adjusted for self-recovery mechanism and message recipients
+- `commitToolOutput` - Send function execution result to history. If a function was called, the agent freezes until receiving a response
+- `commitSystemMessage` - Supplement system prompt with new inputs
+- `commitFlush` - Clear conversation for agent if incorrect responses were received or the model erroneously calls a tool recursively
+- `execute` - Ask the neural network to take initiative and write to the user first
+- `emit` - Send a pre-prepared message to the user
+- `getLastUserMessage` - Get the last message from the user (without considering execute)
+- `commitUserMessage` - Save user message in chat history without response. If user spams messages without waiting for request processing
+- `getAgentName` - Get active agent name
+- `getUserHistory` - Get history of user messages
+- `getAssistantHistory` - Get history of language model messages
+- `getLastAssistantMessage` - Get last message from language model
+- `getLastSystemMessage` - Get last system prompt supplement
