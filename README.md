@@ -180,7 +180,7 @@ export const NAVIGATE_TO_SALES = addTool({
 
 To avoid hardcoding initial agent messages, when switching agents, a user request simulation occurs asking to say hello.
 
-```tsx`
+```tsx
 import {
   addTool,
   commitSystemMessage,
