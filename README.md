@@ -30,8 +30,6 @@ Telephone comes from the word "phone," phonetics - sound. Instead of learning a 
 
 Agent Swarm is like fragments in Android or a router in React: they allow you to specify the scope of tasks (buttons on screen) based on previous user input. For example, when a call comes in on a SIP phone, you first need to understand if the person wants to buy or return an item in principle, and then offer them a list of available products.
 
-### Data Schema Diagram for the Code Below
-
 ## Technical Requirements
 
 The tax office will always ask for debit/credit in tabular form, so CRM systems won't go anywhere. The task of LLM is to parse natural text from either chat or voice recognition and transform it into a function signature with name and arguments so that it can be called and data can be written to the database.
