@@ -16,6 +16,9 @@ const main = () => {
   if (CC_EXECUTE_TEST) {
     return;
   }
+  if (CC_WWWROOT_PORT === -1) {
+    return;
+  }
   const server = serve({
     fetch: app.fetch,
     port: CC_WWWROOT_PORT,

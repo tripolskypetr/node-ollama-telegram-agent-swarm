@@ -1,5 +1,5 @@
 import { memoize } from "functools-kit";
-import { CC_BOT_TOKEN, CC_EXECUTE_TEST } from "src/config/params";
+import { CC_BOT_TOKEN, CC_EXECUTE_TEST, CC_WWWROOT_PORT } from "src/config/params";
 import ClientChat from "src/lib/client/ClientChat";
 import { Context, Telegraf } from "telegraf";
 import { message } from "telegraf/filters";
@@ -18,6 +18,9 @@ const main = async () => {
     return;
   }
   if (!CC_BOT_TOKEN) {
+    return;
+  }
+  if (CC_WWWROOT_PORT === -1) {
     return;
   }
   const bot = new Telegraf(CC_BOT_TOKEN);

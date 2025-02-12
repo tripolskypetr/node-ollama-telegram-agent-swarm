@@ -4,7 +4,6 @@ import { createLogger } from "pinolog";
 import "@tensorflow/tfjs-backend-wasm";
 import { setConfig, swarm } from "agent-swarm-kit";
 import ClientHistory from "src/lib/client/ClientHistory";
-import { ioc } from "src/lib";
 
 setBackend("wasm");
 
