@@ -1,4 +1,4 @@
-import { addTool, changeAgent, execute } from "agent-swarm-kit";
+import { addTool, changeAgent, commitToolOutput, execute } from "agent-swarm-kit";
 import { sleep } from "functools-kit";
 import { SALES_AGENT } from "src/logic/agent/sales.agent";
 import { z } from "zod";
@@ -11,7 +11,8 @@ export const NAVIGATE_TO_SALES = addTool({
     const { success } = await PARAMETER_SCHEMA.spa(params);
     return success;
   },
-  call: async (clientId) => {
+  call: async (toolId, clientId, agentName) => {
+    await commitToolOutput(toolId, "Navigation success", clientId, agentName);
     await changeAgent(SALES_AGENT, clientId);
     await execute("Say hello to the user", clientId, SALES_AGENT);
   },

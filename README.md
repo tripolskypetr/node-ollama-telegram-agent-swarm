@@ -154,8 +154,9 @@ export const NAVIGATE_TO_SALES = addTool({
     const { success } = await PARAMETER_SCHEMA.spa(params);
     return success;
   },
-  call: async (clientId, agentName) => {
+  call: async (toolId, clientId, agentName) => {
     await commitToolOutput(
+      toolId,
       "Navigation success`,
       clientId,
       agentName
@@ -202,7 +203,7 @@ export const SEARCH_PHARMA_PRODUCT = addTool({
     const { success } = await PARAMETER_SCHEMA.spa(params);
     return success;
   },
-  call: async (clientId, agentName, params) => {
+  call: async (toolId, clientId, agentName, params) => {
     let search = "";
     if (params.description) {
       search = String(params.description);
@@ -211,6 +212,7 @@ export const SEARCH_PHARMA_PRODUCT = addTool({
     }
     if (!search) {
       await commitToolOutput(
+        toolId,
         str.newline(`The products does not found in the database`),
         clientId,
         agentName
@@ -228,6 +230,7 @@ export const SEARCH_PHARMA_PRODUCT = addTool({
     );
     if (products.length) {
       await commitToolOutput(
+        toolId,
         str.newline(
           `The next pharma product found in database: ${products.map(
             serializeProduct

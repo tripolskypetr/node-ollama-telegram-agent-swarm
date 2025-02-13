@@ -1,4 +1,4 @@
-import { addTool, changeAgent, execute } from "agent-swarm-kit";
+import { addTool, changeAgent, commitToolOutput, execute } from "agent-swarm-kit";
 import { TRIAGE_AGENT } from "src/logic/agent/triage.agent";
 import { z } from "zod";
 
@@ -10,7 +10,8 @@ export const NAVIGATE_TO_TRIAGE = addTool({
     const { success } = await PARAMETER_SCHEMA.spa(params);
     return success;
   },
-  call: async (clientId) => {
+  call: async (toolId, clientId, agentName) => {
+    await commitToolOutput(toolId, "Navigation success", clientId, agentName);
     await changeAgent(TRIAGE_AGENT, clientId);
     await execute("Say hello to the user", clientId, TRIAGE_AGENT);
   },
